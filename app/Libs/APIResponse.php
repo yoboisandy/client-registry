@@ -11,7 +11,7 @@ class APIResponse
      *
      * @param mix $data
      * @param string $message
-     * @return void
+     * @return JsonResponse
      */
     public static function success($data = null, $message = null): JsonResponse
     {
@@ -32,7 +32,7 @@ class APIResponse
      *
      * @param mix $data
      * @param string $message
-     * @return void
+     * @return JsonResponse
      */
     public static function error($data = null, $message = null, $code = 500): JsonResponse
     {
