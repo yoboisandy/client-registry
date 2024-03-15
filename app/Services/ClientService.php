@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Collection;
+
 class ClientService implements ClientServiceInterface
 {
     /**
@@ -21,5 +23,18 @@ class ClientService implements ClientServiceInterface
     public function addClient(array $data): array
     {
         return $this->csvService->appendToCSV('clients.csv', $data);
+    }
+
+    /**
+     * Get all clients.
+     *
+     * @return array
+     */
+    public function getClients($pageNumber = 1): array
+    {
+        return [
+            "data" => $this->csvService->readCSV('clients.csv', $pageNumber),
+            "pagination" => $this->csvService->paginationData('clients.csv', $pageNumber)
+        ];
     }
 }

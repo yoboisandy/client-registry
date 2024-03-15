@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(ClientController::class)->prefix('clients')->group(function () {
     Route::post('/', 'store');
+    Route::get('/', 'index');
 });
