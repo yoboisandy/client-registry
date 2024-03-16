@@ -86,7 +86,7 @@ class CSVService implements CSVServiceInterface
     public function readCSV(string $filename, $pageNumber = 1): Collection
     {
         if (!$this->checkCSVExists($filename)) {
-            return [];
+            return collect([]);
         }
         $csv = Reader::createFromPath(storage_path("app/public/csv/{$filename}"), 'r');
         $csv->setHeaderOffset(0);

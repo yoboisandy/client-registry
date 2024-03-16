@@ -25,12 +25,15 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->respond(function (Response $response) {
-            $message = json_decode($response->getContent())->message ?? null;
-            $errors = json_decode($response->getContent())->errors ?? null;
-            return APIResponse::error(
-                data: $errors ?? null,
-                message: $message,
-                code: $response->getStatusCode()
-            );
+            if (json_decode($response->getContent())) {
+                $message = json_decode($response->getContent())->message ?? null;
+                $errors = json_decode($response->getContent())->errors ?? null;
+                return APIResponse::error(
+                    data: $errors ?? null,
+                    message: $message,
+                    code: $response->getStatusCode()
+                );
+            }
+            return $response;
         });
     })->create();
