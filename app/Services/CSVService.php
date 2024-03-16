@@ -63,7 +63,7 @@ class CSVService implements CSVServiceInterface
     private function dataForCsv(array $data): array
     {
         return [
-            'id' => uniqid(),
+            'id' => isset($data['id']) ? $data['id'] : uniqid(),
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
