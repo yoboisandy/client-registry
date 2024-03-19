@@ -137,4 +137,31 @@ class CSVService implements CSVServiceInterface
             'current_page' => $currentPage,
         ];
     }
+
+    /**
+     * delete csv file
+     * @param string $filename
+     * @return void
+     */
+    public function deleteCsvFileIfExist($filename): void
+    {
+        $filename = storage_path('app/public/csv/' . $filename);
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
+    }
+
+    /**
+     * Get the content of a csv file.
+     * @param string $filename
+     * @return string
+     */
+    public function getCsvFileContent($filename): string
+    {
+        $file = storage_path('app/public/csv/' . $filename);
+        if (file_exists($file)) {
+            return file_get_contents($file);
+        }
+        return '';
+    }
 }

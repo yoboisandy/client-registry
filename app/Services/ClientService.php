@@ -22,7 +22,7 @@ class ClientService implements ClientServiceInterface
      */
     public function addClient(array $data): array
     {
-        return $this->csvService->appendToCSV('clients.csv', $data);
+        return $this->csvService->appendToCSV(config('app.csv'), $data);
     }
 
     /**
@@ -33,8 +33,8 @@ class ClientService implements ClientServiceInterface
     public function getClients($pageNumber = 1): array
     {
         return [
-            "data" => $this->csvService->readCSV('clients.csv', $pageNumber),
-            "pagination" => $this->csvService->paginationData('clients.csv', $pageNumber)
+            "data" => $this->csvService->readCSV(config('app.csv'), $pageNumber),
+            "pagination" => $this->csvService->paginationData(config('app.csv'), $pageNumber)
         ];
     }
 }

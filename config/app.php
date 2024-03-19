@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'csv' => env('CSV_FILE', 'clients.csv'),
 ];
